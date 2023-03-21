@@ -11,7 +11,26 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os.path
+import os
 from pathlib import Path
+import psycopg2
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
+#db_host = os.environ['FSTR_DB_HOST']
+#db_port = os.environ['FSTR_DB_PORT']
+#db_login = os.environ['FSTR_DB_LOGIN']
+#db_pass = os.environ['FSTR_DB_PASS']
+#
+#conn = psycopg2.connect(
+#    host=db_host,
+#    port=db_port,
+#    user=db_login,
+#    password=db_pass,
+#    dbname='pereval'
+#)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +40,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6-fl#qyq%l!(^8ki=8@d868&k+4-4^guz)vq59o5idu_a$uvv)'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pereval.apps.PerevalConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -77,21 +97,15 @@ WSGI_APPLICATION = 'sprintpereval.wsgi.application'
 
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'postgres',
-    'USER': 'postgres',
-    'PASSWORD': 'etfh46VN',
-    'HOST': 'localhost',
-    'PORT': '5432',
+    #'ENGINE': 'django.db.backends.postgresql',
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': env("DB_NAME"),
+    'USER': env("DB_USER"),
+    'PASSWORD': env("DB_PASSWORD"),
+    'HOST': env("DB_HOST"),
+    'PORT': env("DB_PORT"),
     }
 }
-
-  #   {
-  # 'default': {
-  #        'ENGINE': 'django.db.backends.sqlite3',
-  #        'NAME': BASE_DIR / 'db.sqlite3',
-  #    }
-  # }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -128,6 +142,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
