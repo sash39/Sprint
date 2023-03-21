@@ -26,7 +26,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'fam', 'name', 'otc', 'phone',)
+        fields = ('email', 'sur', 'name', 'otc', 'phone',)
         verbose_name = 'Пользователь'
 
 
