@@ -17,11 +17,12 @@ from rest_framework.routers import DefaultRouter
 from django.urls import path, include
 from rest_framework import routers
 from django.contrib import admin
-from pereval.views import SubmitDataDetailView, SubmitDataUpdateView
+from pereval.views import SubmitDataDetailView, SubmitDataUpdateView, SubmitDataListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/submit-data', include('pereval.urls')),
     path('api/v1/submit-data/1/', SubmitDataDetailView.as_view(), name='submit-data-detail'),
     path('api/v1/submit-data/1/', SubmitDataUpdateView.as_view(), name='submit-data-update'),
+    path('api/v1/submit-data', SubmitDataListView.as_view(), name='submit-data-list'),
     ]

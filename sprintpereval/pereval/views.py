@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from .models import PerevalAdded
-from .serializers import PerevalSerializer, PerevalSubmitDataSerializer, PerevalSubmitDataUpdateSerializer
+from .models import PerevalAdded, Users
+from .serializers import PerevalSerializer, PerevalSubmitDataSerializer, PerevalSubmitDataUpdateSerializer, PerevalSubmitDataListSerializer
 from rest_framework import generics, mixins, status
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.views import APIView
-from rest_framework.generics import RetrieveAPIView, UpdateAPIView
+from rest_framework.generics import RetrieveAPIView, UpdateAPIView, ListAPIView
 from rest_framework.response import Response
 
 
@@ -20,7 +20,7 @@ class SubmitDataDetailView(RetrieveAPIView):
     serializer_class = PerevalSubmitDataSerializer
 
 class SubmitDataUpdateView(UpdateAPIView):
-    queryset = PerevalAdded.objects.all()
+    queryset = Users.objects.all()
     serializer_class = PerevalSubmitDataUpdateSerializer
 
     def update(self, request, *args, **kwargs):
@@ -36,3 +36,14 @@ class SubmitDataUpdateView(UpdateAPIView):
         self.perform_update(serializer)
 
         return Response({'state': 1})
+    
+
+class SubmitDataListView(ListAPIView):
+    queryset = Users.objects.all()
+    serializer_class = PerevalSubmitDataListSerializer
+
+    def get_queryset(self):
+        email = self.request.query_params.get('user__email', None)
+        if email is not None:
+            return self.queryset.filter(user__email=email)
+        return self.queryset.none()

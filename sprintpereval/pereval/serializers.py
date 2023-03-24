@@ -14,20 +14,22 @@ class CoordsSerializer(serializers.ModelSerializer):
 class LevelSerialize(serializers.ModelSerializer):
     class Meta:
         model = Level
-        fields = ('__all__')
+        fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source='first_name')
-    sur = serializers.CharField(source='last_name')
+    fam = serializers.CharField(source='last_name')
     otc = serializers.CharField(source='patronymic')
     email = serializers.CharField()
     phone = serializers.CharField()
+    phone_regex = serializers.CharField()
 
     class Meta:
         model = User
-        fields = ('email', 'sur', 'name', 'otc', 'phone',)
+        fields = ('email', 'fam', 'name', 'otc', 'phone', 'phone_regex')
         verbose_name = 'Пользователь'
+    
 
 
 class ImagesSerializer(serializers.ModelSerializer):
@@ -53,10 +55,16 @@ class PerevalSubmitDataSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = PerevalAdded
-        fields = ('__all__')
+        fields = '__all__'
         
 class PerevalSubmitDataUpdateSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Users
         exclude = ('fam', 'email', 'phone')
+
+
+class PerevalSubmitDataListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Users
+        fields = '__all__'
