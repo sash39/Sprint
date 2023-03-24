@@ -19,19 +19,6 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-#db_host = os.environ['FSTR_DB_HOST']
-#db_port = os.environ['FSTR_DB_PORT']
-#db_login = os.environ['FSTR_DB_LOGIN']
-#db_pass = os.environ['FSTR_DB_PASS']
-#
-#conn = psycopg2.connect(
-#    host=db_host,
-#    port=db_port,
-#    user=db_login,
-#    password=db_pass,
-#    dbname='pereval'
-#)
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -59,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pereval.apps.PerevalConfig',
     'rest_framework',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
