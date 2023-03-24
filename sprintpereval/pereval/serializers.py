@@ -1,7 +1,7 @@
 import serializers as serializers
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Coords, Level, PerevalAdded, Images
+from .models import Coords, Level, PerevalAdded, Images, Users
 
 
 class CoordsSerializer(serializers.ModelSerializer):
@@ -48,3 +48,15 @@ class PerevalSerializer(serializers.ModelSerializer):
     class Meta:
         model = PerevalAdded
         exclude = ('id', 'status')
+    
+class PerevalSubmitDataSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = PerevalAdded
+        fields = ('__all__')
+        
+class PerevalSubmitDataUpdateSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Users
+        exclude = ('fam', 'email', 'phone')

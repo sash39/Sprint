@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import PerevalAdded, Coords, Images, Level
+from .models import PerevalAdded, Coords, Images, Level, Users
 
 
 class PerevalAdmin(admin.ModelAdmin):
@@ -17,7 +17,12 @@ class ImagesAdmin(admin.ModelAdmin):
 class LevelAdmin(admin.ModelAdmin):
     list_display = ('id', 'winter', 'summer', 'autumn', 'spring')
 
+class UsersAdmin(admin.ModelAdmin):
+    list_display = ('email', 'fam', 'name', 'otc', 'phone_regex', 'phone')
+
+
 admin.site.register(PerevalAdded, PerevalAdmin)
 admin.site.register(Coords, CoordsAdmin)
 admin.site.register(Images, ImagesAdmin)
 admin.site.register(Level, LevelAdmin)
+admin.site.register(Users, UsersAdmin)
