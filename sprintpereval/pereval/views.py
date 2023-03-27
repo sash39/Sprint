@@ -2,15 +2,14 @@ from django.shortcuts import render
 from .models import PerevalAdded, Users
 from .serializers import PerevalSerializer, PerevalSubmitDataSerializer, PerevalSubmitDataUpdateSerializer, PerevalSubmitDataListSerializer
 from rest_framework import generics, mixins, status
-from rest_framework.viewsets import GenericViewSet
+from rest_framework.viewsets import GenericViewSet, ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView, ListAPIView
 from rest_framework.response import Response
+from rest_framework import viewsets
 
 
-
-
-class PerevalViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, GenericViewSet):
+class PerevalViewSet(viewsets.ModelViewSet):
     queryset = PerevalAdded.objects.all()
     serializer_class = PerevalSerializer
 

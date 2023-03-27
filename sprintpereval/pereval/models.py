@@ -71,14 +71,16 @@ class Images(models.Model):
         verbose_name_plural = "Изображения"
 
 
+phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,12}$',
+        message="Phone number must be entered in the format: "
+                                         "'+999999999'. Up to 12 digits allowed.")
+
 class Users(models.Model):
     email = models.EmailField(unique=True)
     fam = models.CharField(max_length=150)
     name = models.CharField(max_length=150)
     otc = models.CharField(max_length=150)
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,12}$',
-                                 message="Phone number must be entered in the format: "
-                                         "'+999999999'. Up to 12 digits allowed.")
     phone = models.CharField(validators=[phone_regex], max_length=14, blank=True)
 
     def __str__(self):

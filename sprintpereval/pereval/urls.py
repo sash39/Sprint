@@ -11,10 +11,8 @@ router.register(r'pereval', PerevalViewSet)
 
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('pereval/', PerevalViewSet.as_view({'get': 'list'})),
     ]
-
-
 
 
 if settings.DEBUG:

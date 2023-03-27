@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pereval.apps.PerevalConfig',
     'rest_framework',
+    'drf_yasg',
     'rest_framework_swagger',
 ]
 

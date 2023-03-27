@@ -18,7 +18,7 @@ class LevelAdmin(admin.ModelAdmin):
     list_display = ('id', 'winter', 'summer', 'autumn', 'spring')
 
 class UsersAdmin(admin.ModelAdmin):
-    list_display = ('email', 'fam', 'name', 'otc', 'phone_regex', 'phone')
+    list_display = ('email', 'fam', 'name', 'otc', 'phone')
 
 
 admin.site.register(PerevalAdded, PerevalAdmin)
