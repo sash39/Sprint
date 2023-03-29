@@ -4,6 +4,7 @@ from rest_framework import serializers
 from .models import Coords, Level, PerevalAdded, Images, Users
 
 
+
 class CoordsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coords
@@ -23,11 +24,11 @@ class UserSerializer(serializers.ModelSerializer):
     otc = serializers.CharField(source='patronymic')
     email = serializers.CharField()
     phone = serializers.CharField()
-    phone_regex = serializers.CharField()
+    #phone_regex = serializers.CharField()
 
     class Meta:
         model = User
-        fields = ('email', 'fam', 'name', 'otc', 'phone', 'phone_regex')
+        fields = ('email', 'fam', 'name', 'otc', 'phone')
         verbose_name = 'Пользователь'
     
 
