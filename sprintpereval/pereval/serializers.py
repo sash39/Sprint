@@ -18,14 +18,13 @@ class LevelSerialize(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UsersSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source='first_name')
     fam = serializers.CharField(source='last_name')
     otc = serializers.CharField(source='patronymic')
     email = serializers.CharField()
     phone = serializers.CharField()
-    #phone_regex = serializers.CharField()
-
+    
     class Meta:
         model = User
         fields = ('email', 'fam', 'name', 'otc', 'phone')
@@ -34,7 +33,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ImagesSerializer(serializers.ModelSerializer):
-    img = serializers.ImageField(max_length=None, use_url=True)
+    
 
     class Meta:
         model = Images
@@ -43,7 +42,7 @@ class ImagesSerializer(serializers.ModelSerializer):
 
 
 class PerevalSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+    user = UsersSerializer()
     coords = CoordsSerializer()
     level = LevelSerialize()
     images = ImagesSerializer(many=True)
