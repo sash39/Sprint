@@ -1,0 +1,412 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Snippets API",
+        "version": "v1"
+    },
+    "basePath": "/",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "Basic": {
+            "type": "basic"
+        }
+    },
+    "security": [
+        {
+            "Basic": []
+        }
+    ],
+    "paths": {
+        "/api/v1/submit-data": {
+            "get": {
+                "operationId": "api_v1_submit-data_list",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PerevalSubmitDataList"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "api"
+                ]
+            },
+            "parameters": []
+        },
+        "/api/v1/submit-data/1/": {
+            "get": {
+                "operationId": "api_v1_submit-data_1_read",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/PerevalSubmitData"
+                        }
+                    }
+                },
+                "tags": [
+                    "api"
+                ]
+            },
+            "parameters": []
+        },
+        "/api/v1/submit-datapereval/": {
+            "get": {
+                "operationId": "api_v1_submit-datapereval_list",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Pereval"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "api"
+                ]
+            },
+            "parameters": []
+        },
+        "/pereval/": {
+            "get": {
+                "operationId": "pereval_list",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Pereval"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "pereval"
+                ]
+            },
+            "parameters": []
+        }
+    },
+    "definitions": {
+        "PerevalSubmitDataList": {
+            "required": [
+                "email",
+                "fam",
+                "name",
+                "otc"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "email": {
+                    "title": "Email",
+                    "type": "string",
+                    "format": "email",
+                    "maxLength": 254,
+                    "minLength": 1
+                },
+                "fam": {
+                    "title": "Fam",
+                    "type": "string",
+                    "maxLength": 150,
+                    "minLength": 1
+                },
+                "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "maxLength": 150,
+                    "minLength": 1
+                },
+                "otc": {
+                    "title": "Otc",
+                    "type": "string",
+                    "maxLength": 150,
+                    "minLength": 1
+                },
+                "phone": {
+                    "title": "Phone",
+                    "type": "string",
+                    "pattern": "^\\+?1?\\d{9,12}$",
+                    "maxLength": 14
+                }
+            }
+        },
+        "PerevalSubmitData": {
+            "required": [
+                "beauty_title",
+                "title",
+                "other_titles",
+                "user",
+                "coords",
+                "level"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "beauty_title": {
+                    "title": "Название препятствия",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                },
+                "title": {
+                    "title": "Название вершины",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                },
+                "other_titles": {
+                    "title": "Другое название",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                },
+                "add_time": {
+                    "title": "Add time",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "status": {
+                    "title": "Status",
+                    "type": "string",
+                    "enum": [
+                        "new",
+                        "pending",
+                        "accepted",
+                        "rejected"
+                    ]
+                },
+                "connect": {
+                    "title": "Connect",
+                    "type": "string",
+                    "minLength": 1,
+                    "x-nullable": true
+                },
+                "user": {
+                    "title": "User",
+                    "type": "integer"
+                },
+                "coords": {
+                    "title": "Coords",
+                    "type": "integer"
+                },
+                "level": {
+                    "title": "Level",
+                    "type": "integer"
+                }
+            }
+        },
+        "Users": {
+            "required": [
+                "email",
+                "fam",
+                "name",
+                "otc",
+                "phone"
+            ],
+            "type": "object",
+            "properties": {
+                "email": {
+                    "title": "Email",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "fam": {
+                    "title": "Fam",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "otc": {
+                    "title": "Otc",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "phone": {
+                    "title": "Phone",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "Coords": {
+            "required": [
+                "latitude",
+                "longitude",
+                "height"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "latitude": {
+                    "title": "Latitude",
+                    "type": "number"
+                },
+                "longitude": {
+                    "title": "Longitude",
+                    "type": "number"
+                },
+                "height": {
+                    "title": "Height",
+                    "type": "number"
+                }
+            }
+        },
+        "LevelSerialize": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "winter": {
+                    "title": "Зима",
+                    "type": "string",
+                    "maxLength": 10,
+                    "minLength": 1,
+                    "x-nullable": true
+                },
+                "summer": {
+                    "title": "Лето",
+                    "type": "string",
+                    "maxLength": 10,
+                    "minLength": 1,
+                    "x-nullable": true
+                },
+                "autumn": {
+                    "title": "Осень",
+                    "type": "string",
+                    "maxLength": 10,
+                    "minLength": 1,
+                    "x-nullable": true
+                },
+                "spring": {
+                    "title": "Весна",
+                    "type": "string",
+                    "maxLength": 10,
+                    "minLength": 1,
+                    "x-nullable": true
+                }
+            }
+        },
+        "Images": {
+            "required": [
+                "title"
+            ],
+            "type": "object",
+            "properties": {
+                "data": {
+                    "title": "Изображение",
+                    "type": "string",
+                    "readOnly": true,
+                    "x-nullable": true,
+                    "format": "uri"
+                },
+                "title": {
+                    "title": "Title",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                }
+            }
+        },
+        "Pereval": {
+            "required": [
+                "user",
+                "coords",
+                "level",
+                "images",
+                "beauty_title",
+                "title",
+                "other_titles"
+            ],
+            "type": "object",
+            "properties": {
+                "user": {
+                    "$ref": "#/definitions/Users"
+                },
+                "coords": {
+                    "$ref": "#/definitions/Coords"
+                },
+                "level": {
+                    "$ref": "#/definitions/LevelSerialize"
+                },
+                "images": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Images"
+                    }
+                },
+                "beauty_title": {
+                    "title": "Название препятствия",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                },
+                "title": {
+                    "title": "Название вершины",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                },
+                "other_titles": {
+                    "title": "Другое название",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                },
+                "add_time": {
+                    "title": "Add time",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "connect": {
+                    "title": "Connect",
+                    "type": "string",
+                    "minLength": 1,
+                    "x-nullable": true
+                }
+            }
+        }
+    }
+}

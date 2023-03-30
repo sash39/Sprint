@@ -1,4 +1,3 @@
-from rest_framework.routers import DefaultRouter
 from django.urls import path, include, re_path
 from rest_framework import routers
 from django.contrib import admin
@@ -7,8 +6,14 @@ from django.views.generic import TemplateView
 from rest_framework import permissions
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
+from rest_framework.schemas.views import SchemaView
 
 
+
+api_info = openapi.Info(
+   title="Snippets API",
+    default_version='v1',
+)
 
 schema_view = get_schema_view(
    openapi.Info(

@@ -15,6 +15,7 @@ import os
 from pathlib import Path
 import psycopg2
 import environ
+import sys
 
 env = environ.Env()
 environ.Env.read_env()
@@ -35,6 +36,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+SWAGGER_SETTINGS = {
+   'DEFAULT_INFO': 'sprintpereval.urls.api_info',
+}
 # Application definition
 
 INSTALLED_APPS = [
